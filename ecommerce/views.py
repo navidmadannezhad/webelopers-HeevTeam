@@ -29,3 +29,8 @@ def loginUser(request):
         return redirect('/')
     errors = 'نام کاربری یا رمز عبور اشتباه می باشد'
     return redirect('/')
+
+
+def logoutUser(request):
+    auth.logout(request)
+    return redirect('/')
