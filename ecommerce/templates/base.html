@@ -22,7 +22,7 @@
           <ul class="navbar-nav mr-auto">
             {% if request.user.is_authenticated %}
             <li class="nav-item active">
-                <a class="nav-link text-light" href="#" id="logout">خروج<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-light" href="{% url 'logout' %}" id="logout">خروج<span class="sr-only">(current)</span></a>
               </li>
             {% else %}
             <li class="nav-item active">
