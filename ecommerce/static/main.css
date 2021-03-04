@@ -13,13 +13,20 @@ html , body{
     color: white !important;
 }
 
-/* Register Page --- */
-form#register_form , div.register-intro{
+/* Register Page and Login Page --- */
+div.errors{
+    background-color: rgb(255, 80, 80);
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    width: 50%;
+}
+form#register_form , form#login_form , div.register-intro{
     width: 50%;
 }
 
 @media only screen and (max-width:600px){
-    form#register_form , div.register-intro{
+    form#register_form, form#login_form , div.register-intro, div.errors{
         width: 90%;
     }
 }
