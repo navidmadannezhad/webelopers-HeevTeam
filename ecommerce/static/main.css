@@ -12,3 +12,14 @@ html , body{
 .navbar-toggler-icon{
     color: white !important;
 }
+
+/* Register Page --- */
+form#register_form{
+    width: 50%;
+}
+
+@media only screen and (max-width:600px){
+    form#register_form{
+        width: 90%;
+    }
+}
