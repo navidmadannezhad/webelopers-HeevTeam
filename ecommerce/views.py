@@ -26,6 +26,6 @@ def loginUser(request):
     user = authenticate(username= username, password = password)
     if user:
         login(request, user)
-        return render(request, 'home.html')
+        return redirect('/')
     errors = 'نام کاربری یا رمز عبور اشتباه می باشد'
     return render(request, 'login.html', { 'errors': errors })
