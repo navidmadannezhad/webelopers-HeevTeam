@@ -20,15 +20,12 @@ def registerUser(request):
 def returnLoginPage(request):
     return render(request, 'login.html')
 
-
-
-
-""" Working --- """
 def loginUser(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username= username, password = password)
     if user:
+        login(request, user)
         return render(request, 'home.html')
     errors = 'نام کاربری یا رمز عبور اشتباه می باشد'
     return render(request, 'login.html', { 'errors': errors })
