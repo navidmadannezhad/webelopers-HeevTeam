@@ -1,0 +1,14 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: iransansweb;
+}
+
+html , body{
+    height: 100%;
+}
+
+.navbar-toggler-icon{
+    color: white !important;
+}
