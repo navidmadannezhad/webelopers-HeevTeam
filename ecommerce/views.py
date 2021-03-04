@@ -28,4 +28,4 @@ def loginUser(request):
         auth.login(request, user)
         return redirect('/')
     errors = 'نام کاربری یا رمز عبور اشتباه می باشد'
-    return render(request, 'login.html', {'errors': errors})
+    return redirect('/')
