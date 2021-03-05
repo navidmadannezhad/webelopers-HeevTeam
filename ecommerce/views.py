@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.hashers import make_password
+from Webelopers.settings import EMAIL_HOST_USER
+from django.core.mail import send_mail
 
 
 def userIsAuthenticated(request):
@@ -71,12 +73,24 @@ def contactUs(request):
     if request.method == 'GET':
         return render(request, 'contact-us.html')
     elif request.method == 'POST':
-        text = request.POST['text']
-        print(len(text))
-        if len(text) < 10 or len(text) > 250:
+        subject = request.POST['title']
+        message = request.POST['text']
+        sender = request.POST['email']
+        letters = 'ا ب پ ت ث ج چ ح خ د ذ ر ز ژ ص ض ط ظ ع غ ف ق ک گ ل م ن و ه'
+        letters = letters.replace(' ','')
+        for letter in letters:
+            if letter in message or letter in subject:
+                return redirect('/')
+        if len(message) < 10 or len(message) > 250:
             return redirect('/contact-us')
         else:
-            return render(request, 'contact-us.html', { 'contact_success_message': 'success' })
+            if request.method == 'POST':
+                reciever = 'navidproject283@gmail.com'
+                send_mail(subject, 
+                    message, EMAIL_HOST_USER, [reciever], fail_silently = False)
+                return render(request, 'contact-us.html', {'contact_success_message': 'success'})
+            return redirect('/contact-us')
+            
 
 
 
