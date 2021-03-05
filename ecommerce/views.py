@@ -87,7 +87,7 @@ def contactUs(request):
             if request.method == 'POST':
                 reciever = 'navidproject283@gmail.com'
                 send_mail(subject, 
-                    message, EMAIL_HOST_USER, [reciever], fail_silently = False)
+                    message,sender, EMAIL_HOST_USER, [reciever], fail_silently = False)
                 return render(request, 'contact-us.html', {'contact_success_message': 'success'})
             return redirect('/contact-us')
             

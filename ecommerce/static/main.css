@@ -9,8 +9,13 @@ html , body{
     height: 100%;
 }
 
+
 .navbar-toggler-icon{
     color: white !important;
+}
+
+.block-section{
+    height: 100vh;
 }
 
 /* Register Page and Login Page --- */
