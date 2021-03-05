@@ -60,8 +60,6 @@ def loginUser(request):
         auth.login(request, user)
         return render(request, 'seller/dashboard.html')
     return redirect('/')
-   """  errors = 'نام کاربری یا رمز عبور اشتباه می باشد'
-    return render(request, 'login.html', { 'errors': errors }) """
 
 def logoutUser(request):
     auth.logout(request)
