@@ -3,11 +3,8 @@
 {% block content %}
 
 
-{% if contact_success_message %}
-<div class="card text-center">
-    <div class="card-header">
-    Featured
-    </div>
+{% if contact_success_message == "success" %}
+<div class="card text-center" id="done">
     <div class="card-body">
     <h5 class="card-title">پیام با موفقیت ارسال شد</h5>
     <a href="{% url 'homePage' %}" class="btn btn-primary">بازگشت به خانه</a>
@@ -40,7 +37,7 @@
             <label for="text" class="form-label w-100 text-right">پیام:</label>
             <textarea name="text" class="w-100 form-control" id="text"></textarea>
         </div>
-        <button name="submit" type="submit" class="btn btn-primary">ورود</button>
+        <button name="submit" type="submit" class="btn btn-primary">ارسال</button>
     </form>
 
 </div>

@@ -71,7 +71,12 @@ def contactUs(request):
     if request.method == 'GET':
         return render(request, 'contact-us.html')
     elif request.method == 'POST':
-        return render(request, 'contact-us.html', {'contact_success_message': 'success'})
+        text = request.POST['text']
+        print(len(text))
+        if len(text) < 10 or len(text) > 250:
+            return redirect('/contact-us')
+        else:
+            return render(request, 'contact-us.html', { 'contact_success_message': 'success' })
 
 
 
