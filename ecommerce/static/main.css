@@ -21,12 +21,16 @@ div.errors{
     border-radius: 15px;
     width: 50%;
 }
-form#register_form , form#login_form , div.register-intro{
+form#register_form , form#login_form , div.register-intro, form#contact_us_form{
     width: 50%;
 }
 
+form#contact_us_form textarea{
+    height: 300px;
+}
+
 @media only screen and (max-width:600px){
-    form#register_form, form#login_form , div.register-intro, div.errors{
+    form#register_form, form#login_form , div.register-intro, div.errors, form#contact_us_form{
         width: 90%;
     }
 }

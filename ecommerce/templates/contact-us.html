@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% if contact_success_message %}
+<div class="card text-center">
+    <div class="card-header">
+    Featured
+    </div>
+    <div class="card-body">
+    <h5 class="card-title">پیام با موفقیت ارسال شد</h5>
+    <a href="{% url 'homePage' %}" class="btn btn-primary">بازگشت به خانه</a>
+    </div>
+</div>
+{% else %}
+<div class="jumbotron vh-100 w-100 d-flex flex-column align-items-center">
+
+    <div class="text-muted register-intro text-right border-bottom py-2">
+        تماس با ما
+    </div>
+
+    {% if errors %}
+    <div id="errors" class="errors mt-4 text-center">
+        {{ errors }}
+    </div>
+    {% endif %}
+
+    <form id="contact_us_form" class="mt-4" dir="rtl" action="{% url 'contactUs' %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label w-100 text-right">نام عنوان پیام:</label>
+            <input type="text" name="title" class="w-100 form-control" id="title">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label w-100 text-right">ایمیل:</label>
+            <input type="email" name="email" class="w-100 form-control" id="email">
+        </div>
+        <div class="mb-3">
+            <label for="text" class="form-label w-100 text-right">پیام:</label>
+            <textarea name="text" class="w-100 form-control" id="text"></textarea>
+        </div>
+        <button name="submit" type="submit" class="btn btn-primary">ورود</button>
+    </form>
+
+</div>
+{% endif %}
+
+{% endblock %}

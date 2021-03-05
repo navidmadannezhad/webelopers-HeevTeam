@@ -62,13 +62,16 @@ def Login(request):
         return redirect('/')
 
 
-
-    
-
-
 def logoutUser(request):
     auth.logout(request)
     return redirect('/')
+
+
+def contactUs(request):
+    if request.method == 'GET':
+        return render(request, 'contact-us.html')
+    elif request.method == 'POST':
+        return render(request, 'contact-us.html', {'contact_success_message': 'success'})
 
 
 
