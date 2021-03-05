@@ -9,4 +9,5 @@ def userIsAuthenticated(request):
 def returnPanelPage(request):
     if(userIsAuthenticated(request)):
         return render(request,'seller/dashboard.html')
-    return render(request, 'login.html')
+    else:
+        return render(request, 'login.html')

@@ -4,6 +4,13 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.hashers import make_password
 
+
+def userIsAuthenticated(request):
+    if request.user.is_authenticated:
+        return True
+    return False
+
+
 def returnHomePage(request):
     return render(request, 'home.html')
 
@@ -41,6 +48,8 @@ def registerUser(request):
     return render(request, 'register.html', { 'errors': errors })
 
 def returnLoginPage(request):
+    if userIsAuthenticated(request):
+        return redirect('/seller/panel')
     return render(request, 'login.html')
 
 def loginUser(request):
