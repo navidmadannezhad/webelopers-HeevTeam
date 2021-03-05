@@ -18,6 +18,35 @@ html , body{
     height: 100vh;
 }
 
+#navbar{
+    position: relative;
+}
+
+#navbar-mobile{
+    display: none;
+}
+
+#navbar a{
+    padding: 10px;
+    transition: all 0.5s;
+}
+
+#navbar #homepage{
+    font-weight: bold !important;
+}
+
+#navbar a:hover{
+    transform: scale(1.01);
+}
+
+#navbar #logout{
+    color: #ff3838 !important;
+}
+
+.search-form{
+    position: absolute;
+    left: 20px;
+}
 /* Register Page and Login Page --- */
 div.errors{
     background-color: rgb(255, 80, 80);
@@ -38,4 +67,26 @@ form#contact_us_form textarea{
     form#register_form, form#login_form , div.register-intro, div.errors, form#contact_us_form{
         width: 90%;
     }
+
+    #navbar{
+        display: none;
+    }
+    #navbar-mobile{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width:1000px){
+    #navbar{
+        display: none;
+    }
+    #navbar-mobile{
+        display: flex;
+        flex-direction: column;
+    }
+    #navbar-mobile .search-form{
+        position: inherit;
+    }
+}
 }
