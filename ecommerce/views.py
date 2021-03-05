@@ -47,22 +47,31 @@ def registerUser(request):
 
     return render(request, 'register.html', { 'errors': errors })
 
-def returnLoginPage(request):
-    if userIsAuthenticated(request):
-        return redirect('/seller/panel')
-    return render(request, 'login.html')
+def Login(request):
+    if request.method == 'GET':
+        if userIsAuthenticated(request):
+            return redirect('/seller/panel')
+        return render(request, 'login.html')
+    elif request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username= username, password = password)
+        if user:
+            auth.login(request, user)
+            return render(request, 'seller/dashboard.html')
+        return redirect('/')
 
-def loginUser(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = auth.authenticate(username= username, password = password)
-    if user:
-        auth.login(request, user)
-        return render(request, 'seller/dashboard.html')
-    return redirect('/')
+
+
+    
+
 
 def logoutUser(request):
     auth.logout(request)
     return redirect('/')
+
+
+
+
 
 

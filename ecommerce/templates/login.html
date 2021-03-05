@@ -14,7 +14,7 @@
         </div>
         {% endif %}
 
-        <form id="login_form" class="mt-4" dir="rtl" action="{% url 'loginUser' %}" method="POST">
+        <form id="login_form" class="mt-4" dir="rtl" action="{% url 'Login' %}" method="POST">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="username" class="form-label w-100 text-right">نام کاربری:</label>
