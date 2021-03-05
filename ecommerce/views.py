@@ -59,8 +59,9 @@ def loginUser(request):
     if user:
         auth.login(request, user)
         return render(request, 'seller/dashboard.html')
-    errors = 'نام کاربری یا رمز عبور اشتباه می باشد'
-    return render(request, 'login.html', { 'errors': errors })
+    return redirect('/')
+   """  errors = 'نام کاربری یا رمز عبور اشتباه می باشد'
+    return render(request, 'login.html', { 'errors': errors }) """
 
 def logoutUser(request):
     auth.logout(request)
