@@ -1,0 +1,15 @@
+*{
+    padding:0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+form#make_product , .panel-intro{
+    width: 50%;
+}
+
+@media only screen and (max-width: 600px){
+    form#make_product , .panel-intro{
+        width: 90%;
+    }
+}
