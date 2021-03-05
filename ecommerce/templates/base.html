@@ -24,14 +24,14 @@
             <li class="nav-item active">
                 <a class="nav-link text-light" href="{% url 'logoutUser' %}" id="logout">خروج<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link text-light" href="{% url 'returnPanelPage' %}" id="panel">پنل کاربری<span class="sr-only">(current)</span></a>
-              </li>
             {% else %}
             <li class="nav-item active">
                 <a class="nav-link text-light" href="{% url 'loginPage' %}" id="login">ورود<span class="sr-only">(current)</span></a>
               </li>
             {% endif %}
+            <li class="nav-item">
+              <a class="nav-link text-light" href="{% url 'returnPanelPage' %}" id="panel">پنل کاربری<span class="sr-only">(current)</span></a>
+            </li>
             <li class="nav-item">
               <a class="nav-link text-light" href="{% url 'registerPage' %}" id="register">ثبت نام</a>
             </li>
