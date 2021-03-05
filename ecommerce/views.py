@@ -58,7 +58,7 @@ def Login(request):
         user = auth.authenticate(username= username, password = password)
         if user:
             auth.login(request, user)
-            return render(request, 'seller/dashboard.html')
+            return redirect('/seller/panel')
         return redirect('/')
 
 
