@@ -45,7 +45,8 @@ def registerUser(request):
             if not passwords_are_equal:
                 errors.append('گذرواژه و تکرار گذرواژه یکسان نیستند')
 
-    return render(request, 'register.html', { 'errors': errors })
+    return redirect('/')
+
 
 def Login(request):
     if request.method == 'GET':
