@@ -22,6 +22,27 @@
 
 </head>
 <body class="hold-transition sidebar-mini">
+  <div id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="navbar-brand text-light" href="/" id="homepage">فروشگاه آنلاین وبلوپرز :)</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    {% if request.user.is_authenticated %}
+    <a class="nav-link text-light" href="{% url 'logoutUser' %}" id="logout">خروج<span class="sr-only">(current)</span></a>
+    <a class="nav-link text-light" href="{% url 'returnPanelPage' %}" id="panel">پنل کاربری<span class="sr-only">(current)</span></a>
+      {% else %}
+      <a class="nav-link text-light" href="{% url 'Login' %}" id="login">ورود<span class="sr-only">(current)</span></a>
+      {% endif %}
+      <a class="nav-link text-light" href="{% url 'registerPage' %}" id="register">ثبت نام</a>
+      <a class="nav-link text-light" href="{% url 'contactUs' %}" id="contact_us">تماس با ما</a>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2 ml-4" type="search" placeholder="نام محصول..." aria-label="Search">
+        <button class="btn btn-outline-success my-2 px-4 my-sm-0" type="submit">بگرد</button>
+      </form>
+</div>
 <div class="wrapper">
 
   <!-- Navbar -->
