@@ -8,6 +8,14 @@
             ثبت نام در فروشگاه 
         </div>
 
+        {% if errors %}
+            {% for error in errors %}
+            <div id="errors" class="errors mt-4 text-center">
+                {{ error }}
+            </div>
+            {% endfor %}
+        {% endif %}
+
         <form id="register_form" class="mt-4" dir="rtl" action="{% url 'registerUser' %}" method="POST">
             {% csrf_token %}
             <div class="mb-3">
