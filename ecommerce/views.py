@@ -49,7 +49,7 @@ def loginUser(request):
     user = auth.authenticate(username= username, password = password)
     if user:
         auth.login(request, user)
-        return redirect('/')
+        return render(request, 'seller/dashboard.html')
     errors = 'نام کاربری یا رمز عبور اشتباه می باشد'
     """ return redirect('/') for davari """ 
     return render(request, 'login.html', { 'errors': errors })
@@ -57,3 +57,5 @@ def loginUser(request):
 def logoutUser(request):
     auth.logout(request)
     return redirect('/')
+
+
