@@ -9,24 +9,24 @@ def userIsAuthenticated(request):
         return True
     return False
 
-def createGroupOf(groupname):
-    groupDoesNotExist = not Group.objects.get(name = groupname)
-    if groupDoesNotExist:
-        Group.objects.create(name = groupname)
-
 def userIsSeller(request):
-    if request.user.groups.filter(name = 'seller').exists():
+    seller = getActiveSeller(request)
+    if seller.is_seller:
         return True
     return False
 
 
 def returnBecomeSeller(request):
     if request.method == 'GET':
-        return render(request, 'seller/become-seller.html')
+        if userIsAuthenticated(request):
+            return render(request, 'seller/become-seller.html')
+        else:
+            return redirect('/login/')
     elif request.method == 'POST':
-        createGroupOf('seller')
-        request.user.groups.add('seller')
-        return redirect('/seller/panel/')
+        seller = getActiveSeller(seller)
+        seller.is_seller = True
+        seller.save()
+    return render(request, 'seller/dashboard.html')
 
 def returnPanelPage(request):
     if userIsAuthenticated(request) and userIsSeller(request):
@@ -44,6 +44,25 @@ def addProduct(request):
         name = request.POST['name']
         quantity = request.POST['quantity']
         price = request.POST['price']
-        Product.objects.create(name=name, quantity=quantity, price=price)
+        description = request.POST['description']
+        seller = getActiveSeller(request)
+        product = Product.objects.create(name=name, quantity=quantity, price=price, seller = seller, description = description)
+        product.save()
 
     return redirect('/seller/panel/add-product')
+
+
+def getActiveSeller(request):
+    user = User.objects.get(username = request.user.username)
+    seller = Seller.objects.get(user_id = user.id)
+    return seller
+
+def myProducts(request):
+    if userIsAuthenticated(request) and userIsSeller(request):
+        seller = getActiveSeller(request)
+        products = Product.objects.filter(seller_id = seller.id)
+        return render(request, 'seller/my-products.html', {'products': products})
+
+
+def editProduct():
+    pass

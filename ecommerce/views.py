@@ -5,6 +5,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib.auth.hashers import make_password
 from Webelopers.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
+from seller.models import Seller
 
 
 def userIsAuthenticated(request):
@@ -31,6 +32,8 @@ def validatePasswords(password1, password2):
         return True 
     return False
 
+
+
 def registerUser(request):
     if request.method == 'POST':
         user_is_not_repeated = validateUserName(request.POST['username'])
@@ -39,7 +42,10 @@ def registerUser(request):
         errors = []
 
         if user_is_not_repeated and passwords_are_equal:
-            createUser = User.objects.create(first_name= request.POST['first_name'],last_name= request.POST['last_name'], email= request.POST['email'], password= make_password(request.POST['password1']), username= request.POST['username'])
+            user = User.objects.create(first_name= request.POST['first_name'],last_name= request.POST['last_name'], email= request.POST['email'], password= make_password(request.POST['password1']), username= request.POST['username'])
+            user.save()
+            seller = Seller.objects.create(user = user)
+            seller.save()
             return render(request, 'login.html')
         else:
             if not user_is_not_repeated:
@@ -48,6 +54,8 @@ def registerUser(request):
                 errors.append('گذرواژه و تکرار گذرواژه یکسان نیستند')
 
     return render(request, 'register.html', { 'errors': errors })
+
+
 
 def Login(request):
     if request.method == 'GET':

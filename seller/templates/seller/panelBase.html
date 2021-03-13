@@ -60,10 +60,15 @@
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-4 border-top pt-4">
-          {% if request.user.username %}
+          {% if request.user.user.is_seller %}
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item has-treeview menu-open">
               <ul class="nav nav-treeview">
+                <div class="nav-item">
+                  <a href="{% url 'myProducts' %}" class="nav-link active" id="make_new_product">
+                    <p>محصولات من</p>
+                  </a>
+                </div>
                 <div class="nav-item">
                   <a href="{% url 'addProduct' %}" class="nav-link active" id="make_new_product">
                     <p>اضافه کردن محصول</p>
