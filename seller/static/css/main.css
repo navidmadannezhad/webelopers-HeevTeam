@@ -4,14 +4,14 @@
     box-sizing: border-box;
 }
 
-form#make_product , .panel-intro{
+form#make_product ,form#edit_product , .panel-intro{
     width: 50%;
 }
 
 
 
 @media only screen and (max-width: 600px){
-    form#make_product , .panel-intro{
+    form#make_product , form#edit_product , .panel-intro{
         width: 90%;
     }
 }

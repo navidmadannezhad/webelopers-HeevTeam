@@ -1,0 +1,35 @@
+{% extends 'seller/panelBase.html' %}
+
+
+{% block content %}
+
+<div class="jumbotron vh-100 w-100 d-flex flex-column align-items-center">
+
+    <div class="text-muted panel-intro text-right border-bottom py-2">
+        ویرایش محصول
+    </div>
+
+    <form id="edit_product" class="mt-4" dir="rtl" action="{% url 'updateProduct' product.id %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label w-100 text-right text-muted">نام محصول:</label>
+            <input type="text" name="name" class="form-control" id="name" value="{{ product.name }}">
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label w-100 text-right text-muted">تعداد محصول:</label>
+            <input type="text" value="{{ product.quantity }}" name="quantity" class="form-control" id="quantity">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label w-100 text-right text-muted">قیمت محصول</label>
+            <input type="text" value="{{ product.price }}" name="price" class="form-control" id="price">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label w-100 text-right text-muted">توضیحات محصول</label>
+            <textarea name="description" class="form-control" id="price">{{ product.description }}</textarea>
+        </div>
+        <button name="submit" type="submit" class="btn btn-primary">بروزرسانی</button>
+    </form>
+
+</div>
+
+{% endblock %}

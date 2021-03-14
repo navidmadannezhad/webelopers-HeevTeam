@@ -6,5 +6,6 @@ urlpatterns = [
     path('panel/add-product', views.addProduct, name="addProduct"),
     path('panel/become-seller', views.returnBecomeSeller, name="returnBecomeSeller"),
     path('panel/my-products', views.myProducts, name="myProducts"),
-    path('panel/edit-product/<slug>', views.editProduct, name="editProduct")
+    path('panel/edit-product/<productId>', views.editProduct, name="editProduct"),
+    path('panel/update-product/<productId>',views.updateProduct, name = "updateProduct")
 ]

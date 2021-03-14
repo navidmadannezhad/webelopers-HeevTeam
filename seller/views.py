@@ -23,7 +23,7 @@ def returnBecomeSeller(request):
         else:
             return redirect('/login/')
     elif request.method == 'POST':
-        seller = getActiveSeller(seller)
+        seller = getActiveSeller(request)
         seller.is_seller = True
         seller.save()
     return render(request, 'seller/dashboard.html')
@@ -57,12 +57,31 @@ def getActiveSeller(request):
     seller = Seller.objects.get(user_id = user.id)
     return seller
 
-def myProducts(request):
+def myProducts(request, message = None):
     if userIsAuthenticated(request) and userIsSeller(request):
         seller = getActiveSeller(request)
         products = Product.objects.filter(seller_id = seller.id)
-        return render(request, 'seller/my-products.html', {'products': products})
+        return render(request, 'seller/my-products.html', {'products': products}, message)
 
 
-def editProduct():
-    pass
+def editProduct(request, productId):
+    product = Product.objects.get(id= productId)
+    data = {
+        'product': product
+    }
+    return render(request, 'seller/edit-product.html',data)
+
+def updateProduct(request, productId):
+    newProductData = request.POST
+    targetProduct = Product.objects.get(id = productId)
+    targetProduct.name = newProductData['name']
+    targetProduct.quantity = newProductData['quantity']
+    targetProduct.price = newProductData['price']
+    targetProduct.description = newProductData['description']
+    targetProduct.save()
+    message = {'message': 'محصول با موفقیت بروزرسانی شد!'}
+    #putting myProducts function directly not working, why? i do not fucking know
+    if userIsAuthenticated(request) and userIsSeller(request):
+        seller = getActiveSeller(request)
+        products = Product.objects.filter(seller_id = seller.id)
+        return render(request, 'seller/my-products.html', {'products': products}, message)
