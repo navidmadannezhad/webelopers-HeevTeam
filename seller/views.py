@@ -61,7 +61,7 @@ def myProducts(request, message = None):
     if userIsAuthenticated(request) and userIsSeller(request):
         seller = getActiveSeller(request)
         products = Product.objects.filter(seller_id = seller.id)
-        return render(request, 'seller/my-products.html', {'products': products}, message)
+        return render(request, 'seller/my-products.html', {'products': products, message: message})
 
 
 def editProduct(request, productId):
@@ -79,9 +79,21 @@ def updateProduct(request, productId):
     targetProduct.price = newProductData['price']
     targetProduct.description = newProductData['description']
     targetProduct.save()
-    message = {'message': 'محصول با موفقیت بروزرسانی شد!'}
+    message = 'محصول با موفقیت بروزرسانی شد!'
     #putting myProducts function directly not working, why? i do not fucking know
     if userIsAuthenticated(request) and userIsSeller(request):
         seller = getActiveSeller(request)
         products = Product.objects.filter(seller_id = seller.id)
-        return render(request, 'seller/my-products.html', {'products': products}, message)
+        return render(request, 'seller/my-products.html', {'products': products, message: message})
+
+
+
+
+def deleteProduct(request, productId):
+    Product.objects.get(id = productId).delete()
+    message = 'محصول با موفقیت بروزرسانی شد!'
+    #putting myProducts function directly not working, why? i do not fucking know
+    if userIsAuthenticated(request) and userIsSeller(request):
+        seller = getActiveSeller(request)
+        products = Product.objects.filter(seller_id = seller.id)
+        return render(request, 'seller/my-products.html', {'products': products, message: message})

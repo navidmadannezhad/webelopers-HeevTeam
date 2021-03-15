@@ -33,11 +33,17 @@
                     <a href="#" class="card-link">بررسی محصول</a>
 
                     <a href="#" onclick="document.querySelector('#product{{product.id}}').submit();" class="card-link">ویرایش محصول</a>
-                    <form id="product{{ product.id }}" action="edit-product/{{ product.id }}" method="POST" style="display:none;">
+                    <form id="product{{ product.id }}" action="{% url 'editProduct' product.id %}" method="POST" style="display:none;">
                         {% csrf_token %}
                     </form>
 
-                    <a href="#" class="card-link">حذف محصول</a>
+                    <a href="#" onclick="if(confirm('U really want to delete this product?')){
+                        document.querySelector('#product-delete{{product.id}}').submit();
+                    }" class="card-link">حذف محصول</a>
+                    <form id="product-delete{{ product.id }}" action="{% url 'deleteProduct' product.id %}" method="POST" style="display:none;">
+                        {% csrf_token %}
+                    </form>
+
                     </div>
                 </div>
             {% endfor %}
