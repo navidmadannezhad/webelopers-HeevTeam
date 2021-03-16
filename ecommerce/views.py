@@ -107,7 +107,21 @@ def returnProductPage(request):
     data = {
         'products': products
     }
-    return render(request, 'products.html', data)
+    return render(request, 'products.html',data)
+
+def searchFor(request):
+    query = request.POST['searchValue']
+    products = []
+    productsByName = Product.objects.filter(name__contains = query)
+    productsByDesc = Product.objects.filter(description__contains = query)
+    if productsByName:
+        products = productsByName
+    if productsByDesc:
+        products = productsByDesc | productsByName
+    data = {
+        'products': products
+    }
+    return render(request, 'products.html',data)
             
 
 

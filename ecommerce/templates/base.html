@@ -39,10 +39,12 @@
               <a class="nav-link text-light" href="{% url 'productPage' %}" id="register">فروشگاه</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2 ml-4" type="search" placeholder="نام محصول..." aria-label="Search">
+          <form method="POST" id="search-form" class="form-inline my-2 my-lg-0" action="/find-product/">
+            {% csrf_token %}
+            <input name="searchValue" class="form-control mr-sm-2 ml-4" type="search" placeholder="نام محصول..." aria-label="Search">
             <button class="btn btn-outline-success my-2 px-4 my-sm-0" type="submit">بگرد</button>
           </form>
+         
         </div>
     </div>
 
