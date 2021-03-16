@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="jumbotron vh-100 w-100 d-flex flex-column align-items-center block-section">
+
+        <div class="text-muted register-intro text-right border-bottom py-2">
+            فروشگاه
+        </div>
+
+
+        <div class="products d-flex pt-4 flex-wrap justify-content-center">
+
+        {% if products %}
+
+            {% for product in products %}
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ product.price }} تومان</li>
+                    <li class="list-group-item">{{ product.quantity }} عدد</li>
+                    <li class="list-group-item">فروشنده:{{ product.seller.user.username }}</li>
+                    </ul>
+                    <div class="card-body">
+                    <a href="#" class="card-link">بررسی محصول</a>
+
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% else %}
+
+                <div>
+                    محصولی وجود ندارد
+                </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

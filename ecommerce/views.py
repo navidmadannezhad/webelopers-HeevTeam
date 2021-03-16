@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password
 from Webelopers.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 from seller.models import Seller
+from seller.models import Product
 
 
 def userIsAuthenticated(request):
@@ -98,6 +99,15 @@ def contactUs(request):
                     message, sender,[reciever], fail_silently = False)
                 return render(request, 'contact-us.html', {'contact_success_message': 'success'})
             return redirect('/contact-us')
+
+
+
+def returnProductPage(request):
+    products = Product.objects.all()
+    data = {
+        'products': products
+    }
+    return render(request, 'products.html', data)
             
 
 
